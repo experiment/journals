@@ -3,7 +3,7 @@ require 'helper'
 describe Journals::PlosPaper do
   let(:paper) { Journals::PlosPaper.new }
 
-  describe '#scrape!' do
+  describe '#parse' do
     before do
       paper.doi = doi
       VCR.use_cassette ['paper', doi] { paper.scrape! }

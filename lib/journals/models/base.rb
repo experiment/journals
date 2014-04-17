@@ -11,6 +11,10 @@ module Journals
 
     def scrape!
       raise 'Must have a url set in order to scrape!' unless url
+
+      parse
+
+      self
     end
 
     private

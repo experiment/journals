@@ -1,15 +1,11 @@
 module Journals
   class PlosPaper < Models::Paper
 
-    def scrape!
-      super
-
+    def parse
       self.doi = parse_doi
       self.title = parse_title
       self.published_at = parse_published_at
       self.keywords = parse_keywords
-
-      self
     end
 
     private

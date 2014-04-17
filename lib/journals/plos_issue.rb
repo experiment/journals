@@ -3,12 +3,8 @@ module Journals
 
     PAPER_CLASS = Journals::PlosPaper
 
-    def scrape!
-      super
-
+    def parse
       self.papers = papers_from(parse_paper_dois)
-
-      self
     end
 
     private
