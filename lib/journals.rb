@@ -1,3 +1,5 @@
+require "journals/client"
+
 require "journals/version"
 
 module Journals
