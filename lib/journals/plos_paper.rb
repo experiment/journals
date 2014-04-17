@@ -1,5 +1,6 @@
 module Journals
   class PlosPaper < Paper
+
     def scrape!
       super
 
@@ -11,15 +12,19 @@ module Journals
     private
 
       def parse_doi
-        html.css('meta[name=citation_doi]').first.attributes['content'].value
+        extract_metadata 'citation_doi'
       end
 
       def parse_title
-        html.css('meta[name=citation_title]').first.attributes['content'].value
+        extract_metadata 'citation_title'
       end
 
       def parse_keywords
         html.css('ul#subject-area-sidebar-list .flagText').map(&:text)
+      end
+
+      def extract_metadata(name)
+        html.css("meta[name=#{name}]").first.attributes['content'].value
       end
   end
 end

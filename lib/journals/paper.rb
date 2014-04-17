@@ -1,6 +1,10 @@
 module Journals
   class Paper
-    attr_accessor :url, :doi, :title, :author, :published_at, :keywords
+    attr_accessor :doi, :title, :author, :published_at, :keywords
+
+    def url
+      "http://dx.doi.org/#{doi}"
+    end
 
     def scrape!
       raise 'Must have a url set in order to scrape!' unless url
@@ -9,7 +13,7 @@ module Journals
   private
 
     def html
-      @html ||= Journals::Client.new.get @url
+      @html ||= Journals::Client.new.get url
     end
   end
 end

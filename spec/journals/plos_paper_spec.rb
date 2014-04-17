@@ -5,10 +5,9 @@ describe Journals::PlosPaper do
 
   describe '#scrape!' do
     let(:doi) { '10.1371/journal.pgen.1004275' }
-    let(:url) { 'http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1004275' }
 
     before do
-      paper.url = url
+      paper.doi = doi
 
       VCR.use_cassette ['paper', doi] do
         paper.scrape!
