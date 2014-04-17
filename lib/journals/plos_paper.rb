@@ -8,6 +8,8 @@ module Journals
       self.title = parse_title
       self.published_at = parse_published_at
       self.keywords = parse_keywords
+
+      self
     end
 
     private
