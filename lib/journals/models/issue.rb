@@ -1,5 +1,5 @@
 module Journals
-  class Issue
+  class Models::Issue
     attr_accessor :url, :papers
 
     def scrape!

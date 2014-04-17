@@ -1,5 +1,5 @@
 module Journals
-  class Paper
+  class Models::Paper
     attr_accessor :doi, :title, :author, :published_at, :keywords
 
     def url

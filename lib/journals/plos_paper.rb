@@ -1,5 +1,5 @@
 module Journals
-  class PlosPaper < Paper
+  class PlosPaper < Models::Paper
 
     def scrape!
       super

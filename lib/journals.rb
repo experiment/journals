@@ -1,9 +1,9 @@
 require "journals/client"
 
-require "journals/paper"
-require "journals/plos_paper"
+require "journals/models"
+require "journals/models"
 
-require "journals/issue"
+require "journals/plos_paper"
 require "journals/plos_issue"
 
 require "journals/paper_scraper"

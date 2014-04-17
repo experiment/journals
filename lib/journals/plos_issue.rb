@@ -1,5 +1,5 @@
 module Journals
-  class PlosIssue < Issue
+  class PlosIssue < Models::Issue
 
     PAPER_CLASS = Journals::PlosPaper
 
