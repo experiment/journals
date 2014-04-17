@@ -15,9 +15,7 @@ module Journals
     private
 
       def paper
-        p = type.new
-        p.doi = @doi
-        p
+        type.new doi: @doi
       end
 
       def type

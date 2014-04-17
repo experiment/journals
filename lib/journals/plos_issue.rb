@@ -15,9 +15,7 @@ module Journals
 
       def papers_from(dois)
         dois.map do |doi|
-          paper = PAPER_CLASS.new
-          paper.doi = doi
-          paper
+          PAPER_CLASS.new doi: doi
         end
       end
 
