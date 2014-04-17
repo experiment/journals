@@ -22,6 +22,10 @@ describe Journals::PlosPaper do
       paper.title.must_equal 'Interplay of the Serine/Threonine-Kinase StkP and the Paralogs DivIVA and GpsB in Pneumococcal Cell Elongation and Division'
     end
 
+    it 'should parse the published_at' do
+      paper.published_at.must_equal Date.parse('2014-04-10')
+    end
+
     it 'should parse the keywords' do
       paper.keywords.must_equal ['Cell cycle and cell division', 'Cell fusion',
         'Fluorescence imaging', 'Multiple alignment calculation',

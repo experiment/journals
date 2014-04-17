@@ -6,6 +6,7 @@ module Journals
 
       self.doi = parse_doi
       self.title = parse_title
+      self.published_at = parse_published_at
       self.keywords = parse_keywords
     end
 
@@ -17,6 +18,10 @@ module Journals
 
       def parse_title
         extract_metadata 'citation_title'
+      end
+
+      def parse_published_at
+        Date.parse extract_metadata('citation_date')
       end
 
       def parse_keywords
