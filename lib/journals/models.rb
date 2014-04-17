@@ -3,5 +3,7 @@ module Journals
   end
 end
 
+require_relative 'models/base'
+
 require_relative 'models/issue'
 require_relative 'models/paper'
