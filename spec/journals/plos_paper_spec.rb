@@ -20,6 +20,11 @@ describe Journals::PlosPaper do
         paper.title.must_equal 'Chimpanzees Preferentially Select Sleeping Platform Construction Tree Species with Biomechanical Properties that Yield Stable, Firm, but Compliant Nests'
       end
 
+      it 'should parse the corresponding author' do
+        paper.author.name.must_equal 'David R. Samson'
+        paper.author.email.must_equal 'drsamson@gmail.com'
+      end
+
       it 'should parse the published_at' do
         paper.published_at.must_equal Date.parse('2014-04-16')
       end
@@ -39,6 +44,11 @@ describe Journals::PlosPaper do
 
       it 'should parse the title' do
         paper.title.must_equal 'Interplay of the Serine/Threonine-Kinase StkP and the Paralogs DivIVA and GpsB in Pneumococcal Cell Elongation and Division'
+      end
+
+      it 'should parse the corresponding author' do
+        paper.author.name.must_equal 'Christophe Grangeasse'
+        paper.author.email.must_equal 'c.grangeasse@ibcp.fr'
       end
 
       it 'should parse the published_at' do

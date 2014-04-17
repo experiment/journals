@@ -4,6 +4,7 @@ module Journals
     def parse
       self.doi = parse_doi
       self.title = parse_title
+      self.author = Journals::Models::Author.new(parse_corresponding_author)
       self.published_at = parse_published_at
       self.keywords = parse_keywords
     end
@@ -16,6 +17,14 @@ module Journals
 
       def parse_title
         extract_metadata 'citation_title'
+      end
+
+      def parse_corresponding_author
+        el = html.css('.authors .corresponding').first.ancestors('li')
+        name = el.css('.author .person').children.first.text.strip
+        email = el.css('.author_meta a').text
+
+        { name: name, email: email }
       end
 
       def parse_published_at
