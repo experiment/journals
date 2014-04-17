@@ -1,10 +1,12 @@
 require "journals/client"
 
 require "journals/paper"
+require "journals/plos_paper"
+
+require "journals/issue"
+require "journals/plos_issue"
 
 require "journals/paper_scraper"
-
-require "journals/plos_paper"
 
 require "journals/version"
 
