@@ -19,8 +19,9 @@ module Journals
         el = html.css('.authors .corresponding').first.ancestors('li')
         name = el.css('.author .person').children.first.text.strip
         email = el.css('.author_meta a').text
+        location = el.css('p')[1].text.sub(/affiliation:/i,'').strip
 
-        { name: name, email: email }
+        { name: name, email: email, location: location }
       end
 
       def parse_published_at
