@@ -8,8 +8,22 @@ module Journals
     def self.attributes(*args)
       self._attributes = args
 
-      attr_accessor *args
+      args.each do |attr|
+        class_eval <<-RUBY
+          def #{attr}
+            @#{attr} ||= parse_#{attr}
+          end
+
+          def parse_#{attr}
+            nil
+          end
+        RUBY
+      end
+
+      attr_writer *args
     end
+
+    attr_reader :html
 
     def initialize(params = {})
       # init with given params
@@ -26,15 +40,15 @@ module Journals
     def scrape!
       raise 'Must have a url set in order to scrape!' unless url
 
-      parse
+      get_html
 
       self
     end
 
     private
 
-      def html
-        @html ||= Journals::Client.new.get url
+      def get_html
+        @html = Journals::Client.new.get url
       end
   end
 end

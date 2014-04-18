@@ -3,14 +3,10 @@ module Journals
 
     PAPER_CLASS = Journals::BmcPaper
 
-    def parse
-      self.papers = papers_from(parse_paper_urls)
-    end
-
     private
 
-      def papers_from(urls)
-        urls.map do |url|
+      def parse_papers
+        parse_paper_urls.map do |url|
           PAPER_CLASS.new url: url
         end
       end

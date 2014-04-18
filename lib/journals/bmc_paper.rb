@@ -1,14 +1,6 @@
 module Journals
   class BmcPaper < Models::Paper
 
-    def parse
-      self.doi = parse_doi
-      self.title = parse_title
-      self.author = Journals::Models::Author.new(parse_corresponding_author)
-      self.published_at = parse_published_at
-      self.keywords = parse_keywords
-    end
-
     private
 
       def parse_doi
@@ -17,6 +9,10 @@ module Journals
 
       def parse_title
         extract_metadata 'citation_title'
+      end
+
+      def parse_author
+        Journals::Models::Author.new parse_corresponding_author
       end
 
       def parse_corresponding_author

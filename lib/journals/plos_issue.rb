@@ -3,14 +3,10 @@ module Journals
 
     PAPER_CLASS = Journals::PlosPaper
 
-    def parse
-      self.papers = papers_from(parse_paper_dois)
-    end
-
     private
 
-      def papers_from(dois)
-        dois.map do |doi|
+      def parse_papers
+        parse_paper_dois.map do |doi|
           PAPER_CLASS.new doi: doi
         end
       end
