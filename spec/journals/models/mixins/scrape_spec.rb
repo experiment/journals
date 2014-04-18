@@ -1,17 +1,30 @@
 require 'helper'
 
 describe Journals::Models::Mixins::Scrape do
-  class Test
+  class ScrapeTest
     include Journals::Models::Mixins::Scrape
 
     attr_accessor :url
   end
 
-  let(:instance) { Test.new }
+  class ScrapeWithAttributesTest < ScrapeTest
+    include Journals::Models::Mixins::Attributes
+
+    attributes :jekyll, :hyde
+
+    def parse_jekyll
+      'i am jekyll'
+    end
+  end
+
+  let(:instance) { ScrapeTest.new }
+  let(:instance_with_attributes) { ScrapeWithAttributesTest.new }
 
   before { instance.url = 'url' }
 
   describe '#scrape!' do
+    before { instance.stubs(:get_html) }
+
     it 'raises unless url is set' do
       instance.url = nil
 
@@ -20,6 +33,12 @@ describe Journals::Models::Mixins::Scrape do
 
     it 'calls get_html' do
       instance.expects(:get_html)
+
+      instance.scrape!
+    end
+
+    it 'calls parse' do
+      instance.expects(:parse)
 
       instance.scrape!
     end
@@ -37,6 +56,22 @@ describe Journals::Models::Mixins::Scrape do
 
       instance.send :get_html
       instance.send(:html).must_equal 'markup'
+    end
+  end
+
+  describe '#parse' do
+    it 'calls parse_ for each attribute' do
+      instance_with_attributes.expects(:parse_jekyll)
+      instance_with_attributes.expects(:parse_hyde)
+
+      instance_with_attributes.send :parse
+    end
+
+    it 'sets each attribute with the return value of parse_' do
+      instance_with_attributes.send :parse
+
+      instance_with_attributes.jekyll.must_equal 'i am jekyll'
+      instance_with_attributes.hyde.must_be_nil
     end
   end
 end

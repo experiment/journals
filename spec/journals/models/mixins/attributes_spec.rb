@@ -1,18 +1,14 @@
 require 'helper'
 
 describe Journals::Models::Mixins::Attributes do
-  class Test
+  class AttributesTest
     include Journals::Models::Mixins::Attributes
 
     attributes :one, :two
     attributes :three
-
-    def parse_one
-      'i am one'
-    end
   end
 
-  let(:instance) { Test.new }
+  let(:instance) { AttributesTest.new }
 
   describe '#attributes' do
     it 'returns a list of attributes' do
@@ -21,10 +17,6 @@ describe Journals::Models::Mixins::Attributes do
   end
 
   describe 'attributes' do
-    it 'should call parse_attr on read' do
-      instance.one.must_equal 'i am one'
-    end
-
     it 'should default to nil' do
       instance.two.must_be_nil
     end

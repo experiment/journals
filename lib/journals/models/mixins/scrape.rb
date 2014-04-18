@@ -7,6 +7,8 @@ module Journals
 
         get_html
 
+        parse
+
         self
       end
 
@@ -16,6 +18,14 @@ module Journals
 
         def get_html
           @html = Journals::Client.new.get url
+        end
+
+        def parse
+          if respond_to? :attributes
+            attributes.each do |attr|
+              send "#{attr}=", send("parse_#{attr}")
+            end
+          end
         end
 
     end
