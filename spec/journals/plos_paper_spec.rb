@@ -5,6 +5,7 @@ describe Journals::PlosPaper do
 
   before do
     paper.doi = doi
+
     # Use private get_html rather than scrape! so we don't
     # parse all the attributes (via calling parse)
     VCR.use_cassette ['paper', doi] { paper.send :get_html }
@@ -22,6 +23,7 @@ describe Journals::PlosPaper do
 
       author.name.must_equal 'David R. Samson'
       author.email.must_equal 'drsamson@gmail.com'
+      author.location.must_equal 'Department of Anthropology, University of Nevada, Las Vegas, Las Vegas, Nevada, United States of America'
     end
 
     it 'should parse the published_at' do
@@ -46,6 +48,7 @@ describe Journals::PlosPaper do
 
       author.name.must_equal 'Christophe Grangeasse'
       author.email.must_equal 'c.grangeasse@ibcp.fr'
+      author.location.must_equal 'Bases Moléculaires et Structurales des Systèmes Infectieux, IBCP, Université Lyon 1, CNRS, UMR 5086, Lyon, France'
     end
 
     it 'should parse the published_at' do

@@ -17,10 +17,19 @@ module Journals
 
       def parse_corresponding_author
         el = html.css('p.authors')[1]
+
         name = el.children[2].text.sub(/Corresponding author:/i,'').strip
+        # Remove extra whitespace between names
+        name = name.split.join(' ')
+
         email = el.css('a').text
 
-        { name: name, email: email }
+        el = html.css('meta[name=citation_author]').find do |el|
+          el['content'] == name
+        end
+        location = el.next['content']
+
+        { name: name, email: email, location: location }
       end
 
       def parse_published_at
@@ -34,7 +43,7 @@ module Journals
       end
 
       def extract_metadata(name)
-        html.css("meta[name=#{name}]").first.attributes['content'].value
+        html.css("meta[name=#{name}]").first['content']
       end
   end
 end
