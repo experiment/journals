@@ -4,6 +4,7 @@ module Journals
 end
 
 require_relative 'models/mixins/attributes'
+require_relative 'models/mixins/scrape'
 
 require_relative 'models/base'
 
