@@ -1,5 +1,15 @@
+require 'active_support/core_ext/class/attribute'
+
 module Journals
   class Models::Base
+
+    class_attribute :_attributes, instance_reader: false, instance_writer: false
+
+    def self.attributes(*args)
+      self._attributes = args
+
+      attr_accessor *args
+    end
 
     def initialize(params = {})
       # init with given params
@@ -7,6 +17,10 @@ module Journals
       params.each do |attr, value|
         self.public_send "#{attr}=", value
       end if params
+    end
+
+    def attributes
+      self.class._attributes
     end
 
     def scrape!
