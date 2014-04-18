@@ -10,15 +10,17 @@ module Journals
         base.class_eval do
           class_attribute :_attributes,
             instance_reader: false, instance_writer: false
+
+          self._attributes = []
         end
       end
 
       module ClassMethods
         def attributes(*args)
-          # Track attributes in _attributes class attribute
-          self._attributes = args
+          # Add to _attributes class attribute
+          self._attributes.concat args
 
-          # Define readers for attributes
+          # Define readers
           args.each do |attr|
             class_eval <<-RUBY
               def #{attr}
@@ -34,7 +36,7 @@ module Journals
             RUBY
           end
 
-          # Define writers for attributes
+          # Define writers
           attr_writer *args
         end
       end

@@ -4,7 +4,8 @@ describe Journals::Models::Mixins::Attributes do
   class Test
     include Journals::Models::Mixins::Attributes
 
-    attributes :one, :two, :three
+    attributes :one, :two
+    attributes :three
 
     def parse_one
       'i am one'
