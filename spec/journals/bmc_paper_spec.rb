@@ -23,6 +23,7 @@ describe Journals::BmcPaper do
 
       author.name.must_equal 'Andrew D Chalmers'
       author.email.must_equal 'ac270@bath.ac.uk'
+      author.location.must_equal 'Department of Biology and Biochemistry, University of Bath, Bath BA2 7AY, UK'
     end
 
     it 'should parse the published_at' do
@@ -46,8 +47,9 @@ describe Journals::BmcPaper do
     it 'should parse the corresponding author' do
       author = paper.send(:parse_author)
 
-      author.name.must_equal 'Melissa  Mandarakas'
+      author.name.must_equal 'Melissa Mandarakas'
       author.email.must_equal 'Melissa.Mandarakas@sydney.edu.au'
+      author.location.must_equal 'Arthritis and Musculoskeletal Research Group, Faculty of Health Sciences, The University of Sydney, PO Box 170, Lidcombe, NSW 1825, Australia'
     end
 
     it 'should parse the published_at' do
