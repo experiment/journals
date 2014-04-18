@@ -1,6 +1,6 @@
 module Journals
   class Models::Author < Models::Base
-    attributes :name, :email
+    attr_accessor :name, :email
 
   end
 end

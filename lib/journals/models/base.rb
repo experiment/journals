@@ -1,27 +1,5 @@
-require 'active_support/core_ext/class/attribute'
-
 module Journals
   class Models::Base
-
-    class_attribute :_attributes, instance_reader: false, instance_writer: false
-
-    def self.attributes(*args)
-      self._attributes = args
-
-      args.each do |attr|
-        class_eval <<-RUBY
-          def #{attr}
-            @#{attr} ||= parse_#{attr}
-          end
-
-          def parse_#{attr}
-            nil
-          end
-        RUBY
-      end
-
-      attr_writer *args
-    end
 
     attr_reader :html
 
@@ -31,10 +9,6 @@ module Journals
       params.each do |attr, value|
         self.public_send "#{attr}=", value
       end if params
-    end
-
-    def attributes
-      self.class._attributes
     end
 
     def scrape!

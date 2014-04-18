@@ -3,6 +3,8 @@ module Journals
   end
 end
 
+require_relative 'models/mixins/attributes'
+
 require_relative 'models/base'
 
 require_relative 'models/issue'
