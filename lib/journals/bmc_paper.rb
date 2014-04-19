@@ -42,6 +42,10 @@ module Journals
         end
       end
 
+      def parse_journal
+        extract_metadata 'citation_journal_title'
+      end
+
       def extract_metadata(name)
         html.css("meta[name=#{name}]").first['content']
       end

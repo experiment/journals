@@ -35,6 +35,10 @@ describe Journals::BmcPaper do
         'Western blotting', 'Flow cytometry', 'Immunohistochemistry',
         'ChIP host species', 'Species reactivity', 'Citations']
     end
+
+    it 'should parse the journal name' do
+      paper.send(:parse_journal).must_equal 'BMC Cell Biology'
+    end
   end
 
   describe 'Journal of Foot and Ankle Research paper' do
@@ -59,6 +63,10 @@ describe Journals::BmcPaper do
     it 'should parse the keywords' do
       paper.send(:parse_keywords).must_equal ['Ankle', 'pediatrics', 'joint instability',
         'sprains and strains']
+    end
+
+    it 'should parse the journal name' do
+      paper.send(:parse_journal).must_equal 'Journal of Foot and Ankle Research'
     end
   end
 end

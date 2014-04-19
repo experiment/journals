@@ -3,7 +3,7 @@ module Journals
     include Models::Mixins::Attributes
     include Models::Mixins::Scrape
 
-    attributes :url, :doi, :title, :author, :published_at, :keywords
+    attributes :url, :doi, :title, :author, :published_at, :keywords, :journal
 
     def url
       @url || "http://dx.doi.org/#{doi}"

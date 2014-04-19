@@ -34,6 +34,10 @@ describe Journals::PlosPaper do
       paper.send(:parse_keywords).must_equal ['Chimpanzees', 'Internodes', 'Leaves',
         'Orangutans', 'Phylogenetic analysis', 'Sleep', 'Stiffness', 'Trees']
     end
+
+    it 'should parse the journal name' do
+      paper.send(:parse_journal).must_equal 'PLOS ONE'
+    end
   end
 
   describe 'plos genetics paper' do
@@ -60,6 +64,10 @@ describe Journals::PlosPaper do
         'Fluorescence imaging', 'Multiple alignment calculation',
         'Phase contrast microscopy', 'Phosphorylation', 'Pneumococcus',
         'Sequence alignment']
+    end
+
+    it 'should parse the journal name' do
+      paper.send(:parse_journal).must_equal 'PLOS Genetics'
     end
   end
 end
