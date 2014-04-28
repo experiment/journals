@@ -1,29 +1,27 @@
 # Journals
 
-TODO: Write a gem description
+Gem for scraping journals
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'journals'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install journals
+Add journals to your gemfile. You'll need a authenticated git pull url to do so.
 
 ## Usage
 
-TODO: Write usage instructions here
+    issue = Journals::BmcIssue.new url: 'url'
+    issue.scrape!
 
-## Contributing
+    paper = issue.papers.first
+    paper.scrape!
 
-1. Fork it ( https://github.com/[my-github-username]/journals/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+## Testing
+
+    rake test
+
+## Releasing
+
+First, update the changelog and bump the version (using semver)
+
+Then, to release:
+
+    rake release
