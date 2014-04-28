@@ -22,8 +22,9 @@ module Bundler
   class GemHelper
     protected
 
+      # Patch so we can't push to rubygems
       def rubygem_push(path)
-        p "WOULD HAVE PUSHED: #{path}"
+        Bundler.ui.confirm "Not pushing to rubygems because we don't want this to be public!"
       end
   end
 end
