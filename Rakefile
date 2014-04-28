@@ -17,3 +17,13 @@ end
 
 desc 'Run specs'
 task :default => [:test]
+
+module Bundler
+  class GemHelper
+    protected
+
+      def rubygem_push(path)
+        p "WOULD HAVE PUSHED: #{path}"
+      end
+  end
+end
